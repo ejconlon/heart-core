@@ -13,17 +13,20 @@ description: Please see the README on GitHub at <https://github.com/ejconlon/hea
 
 dependencies:
 - base >= 4.12 && < 5
-# - bytestring
-# - containers
-# - free
-# - hashable
-# - lens
-# - mtl
-# - template-haskell
-# - text
-# - transformers
-# - unordered-containers
-# - vector
+- aeson
+- aeson-casing
+- containers
+- exceptions
+- filepath
+- hashable
+- lens
+- list-t
+- mtl
+- newtype-generics
+- text
+- unliftio
+- unliftio-core
+- unordered-containers
 
 default-extensions:
   - ConstraintKinds
@@ -32,6 +35,7 @@ default-extensions:
   - DeriveFoldable
   - DeriveGeneric
   - DeriveTraversable
+  - DerivingStrategies
   - FlexibleContexts
   - FlexibleInstances
   - FunctionalDependencies
@@ -44,6 +48,7 @@ default-extensions:
   - NoImplicitPrelude
   - OverloadedStrings
   - Rank2Types
+  - StandaloneDeriving
   - TemplateHaskell
   - TupleSections
   - TypeApplications
@@ -61,28 +66,3 @@ ghc-options:
 
 library:
   source-dirs: src
-
-executables:
-  heart-core-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - heart-core
-
-tests:
-  heart-core-test:
-    main:                Tasty.hs
-    source-dirs:         test
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - heart-core
-    - tasty
-    - tasty-discover
-    - tasty-hunit
