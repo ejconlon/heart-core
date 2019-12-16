@@ -41,6 +41,7 @@ module Heart.Core.Prelude
   , foldM
   , for
   , for_
+  , iso
   , makeLenses
   , makePrisms
   , over
@@ -53,7 +54,7 @@ module Heart.Core.Prelude
 
 import Control.Applicative (Alternative (..))
 import Control.Exception (Exception (..))
-import Control.Lens (Getter, Lens', Setter', coerced, over, set, simple, view)
+import Control.Lens (Getter, Lens', Setter', coerced, iso, over, set, simple, view)
 import Control.Lens.TH (makeLenses, makePrisms)
 import Control.Monad (foldM, unless, when)
 import Control.Monad.Catch (MonadThrow (..))
