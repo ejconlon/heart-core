@@ -12,21 +12,21 @@ extra-source-files:
 description: Please see the README on GitHub at <https://github.com/ejconlon/heart-core#readme>
 
 dependencies:
-- base >= 4.12 && < 5
-- aeson
-- aeson-casing
-- containers
-- exceptions
-- filepath
-- hashable
-- lens
-- list-t
-- mtl
-- newtype-generics
-- text
-- unliftio
-- unliftio-core
-- unordered-containers
+- base >=4.12 && <5
+- aeson >=1.4
+- aeson-casing >=0.2
+- containers >=0.6
+- exceptions >=0.10
+- filepath >=1.4
+- hashable >=1.2
+- lens >=4.17
+- list-t >=1.0
+- mtl >=2.2
+- newtype-generics >=0.5
+- text >=1.2
+- unliftio >=0.2
+- unliftio-core >=0.1
+- unordered-containers >=0.2
 
 default-extensions:
   - ConstraintKinds
