@@ -34,6 +34,8 @@ module Heart.Core.Prelude
   , ToJSONKey
   , Typeable
   , UnliftIO (..)
+  , Void
+  , ap
   , asum
   , coerce
   , coerced
@@ -47,6 +49,7 @@ module Heart.Core.Prelude
   , over
   , set
   , simple
+  , toList
   , unless
   , view
   , when
@@ -56,7 +59,7 @@ import Control.Applicative (Alternative (..))
 import Control.Exception (Exception (..))
 import Control.Lens (Getter, Lens', Setter', coerced, iso, over, set, simple, view)
 import Control.Lens.TH (makeLenses, makePrisms)
-import Control.Monad (foldM, unless, when)
+import Control.Monad (ap, foldM, unless, when)
 import Control.Monad.Catch (MonadThrow (..))
 import Control.Monad.Fail (MonadFail (..))
 import Control.Monad.Identity (Identity (..))
@@ -67,7 +70,7 @@ import Control.Monad.Trans (MonadTrans (..))
 import Control.Newtype.Generics (Newtype)
 import Data.Aeson (FromJSON (..), FromJSONKey, ToJSON (..), ToJSONKey)
 import Data.Coerce (Coercible, coerce)
-import Data.Foldable (asum, for_)
+import Data.Foldable (asum, for_, toList)
 import Data.Hashable (Hashable (..))
 import Data.HashMap.Strict (HashMap)
 import Data.HashSet (HashSet)
@@ -81,6 +84,7 @@ import Data.String (IsString)
 import Data.Text (Text)
 import Data.Traversable (for)
 import Data.Typeable (Typeable)
+import Data.Void (Void)
 import GHC.Generics (Generic, Rep)
 import GHC.Stack (HasCallStack)
 import ListT (ListT (..))
