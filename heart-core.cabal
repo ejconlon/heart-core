@@ -4,11 +4,13 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e3cbc43ab5bd9fa6978fc37f72437d7d6693c16b14b123ef744427dcb358de12
+-- hash: c4d8800e6e2a4c22bd77a058f3ad0baa8e722bee6f6d57446b5ee0382cafbde9
 
 name:           heart-core
 version:        0.1.0
+synopsis:       An opinionated library prelude in the UnliftIO style
 description:    Please see the README on GitHub at <https://github.com/ejconlon/heart-core#readme>
+category:       Prelude
 homepage:       https://github.com/ejconlon/heart-core#readme
 bug-reports:    https://github.com/ejconlon/heart-core/issues
 author:         Eric Conlon

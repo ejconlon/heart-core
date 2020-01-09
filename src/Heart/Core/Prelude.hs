@@ -13,6 +13,7 @@ module Heart.Core.Prelude
   , HashSet
   , Identity (..)
   , Int64
+  , Iso'
   , IsString
   , Lens'
   , ListT (..)
@@ -24,6 +25,7 @@ module Heart.Core.Prelude
   , MonadTrans (..)
   , MonadUnliftIO (..)
   , Newtype
+  , Prism'
   , Proxy (..)
   , Rep
   , Seq (..)
@@ -47,6 +49,7 @@ module Heart.Core.Prelude
   , makeLenses
   , makePrisms
   , over
+  , review
   , set
   , simple
   , toList
@@ -57,7 +60,7 @@ module Heart.Core.Prelude
 
 import Control.Applicative (Alternative (..))
 import Control.Exception (Exception (..))
-import Control.Lens (Getter, Lens', Setter', coerced, iso, over, set, simple, view)
+import Control.Lens (Getter, Iso', Lens', Prism', Setter', coerced, iso, over, review, set, simple, view)
 import Control.Lens.TH (makeLenses, makePrisms)
 import Control.Monad (ap, foldM, unless, when)
 import Control.Monad.Catch (MonadThrow (..))
