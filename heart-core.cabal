@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c4d8800e6e2a4c22bd77a058f3ad0baa8e722bee6f6d57446b5ee0382cafbde9
+-- hash: 507050e1190f946f7bd7befa6b9d911d927f5f1737a960c724047c1a6956bbe1
 
 name:           heart-core
-version:        0.1.0
+version:        0.1.1
 synopsis:       An opinionated library prelude in the UnliftIO style
 description:    Please see the README on GitHub at <https://github.com/ejconlon/heart-core#readme>
 category:       Prelude
@@ -42,7 +42,7 @@ library
       Paths_heart_core
   hs-source-dirs:
       src
-  default-extensions: ConstraintKinds DataKinds DeriveFunctor DeriveFoldable DeriveGeneric DeriveTraversable DerivingStrategies FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NoImplicitPrelude OverloadedStrings Rank2Types StandaloneDeriving TemplateHaskell TupleSections TypeApplications TypeFamilies
+  default-extensions: ConstraintKinds DataKinds DeriveFunctor DeriveFoldable DeriveGeneric DeriveTraversable DerivingStrategies GeneralizedNewtypeDeriving NoImplicitPrelude TypeFamilies
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds
   build-depends:
       aeson >=1.4

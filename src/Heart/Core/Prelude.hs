@@ -18,8 +18,10 @@ module Heart.Core.Prelude
   , Lens'
   , ListT (..)
   , Map
+  , MonadCatch (..)
   , MonadFail (..)
   , MonadIO (..)
+  , MonadMask (..)
   , MonadReader (..)
   , MonadThrow (..)
   , MonadTrans (..)
@@ -31,6 +33,7 @@ module Heart.Core.Prelude
   , Seq (..)
   , Set
   , Setter'
+  , SomeException
   , Text
   , ToJSON (..)
   , ToJSONKey
@@ -39,6 +42,8 @@ module Heart.Core.Prelude
   , Void
   , ap
   , asum
+  , catchJust
+  , cast
   , coerce
   , coerced
   , foldl'
@@ -59,11 +64,11 @@ module Heart.Core.Prelude
   ) where
 
 import Control.Applicative (Alternative (..))
-import Control.Exception (Exception (..))
+import Control.Exception (Exception (..), SomeException)
 import Control.Lens (Getter, Iso', Lens', Prism', Setter', coerced, iso, over, review, set, simple, view)
 import Control.Lens.TH (makeLenses, makePrisms)
 import Control.Monad (ap, foldM, unless, when)
-import Control.Monad.Catch (MonadThrow (..))
+import Control.Monad.Catch (MonadCatch (..), MonadMask (..), MonadThrow (..), catchJust)
 import Control.Monad.Fail (MonadFail (..))
 import Control.Monad.Identity (Identity (..))
 import Control.Monad.IO.Class (MonadIO (..))
@@ -86,7 +91,7 @@ import Data.Set (Set)
 import Data.String (IsString)
 import Data.Text (Text)
 import Data.Traversable (for)
-import Data.Typeable (Typeable)
+import Data.Typeable (Typeable, cast)
 import Data.Void (Void)
 import GHC.Generics (Generic, Rep)
 import GHC.Stack (HasCallStack)
