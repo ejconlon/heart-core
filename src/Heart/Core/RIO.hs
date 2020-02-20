@@ -67,6 +67,9 @@ newSomeRef = fmap ioRefToSomeRef . newIORef
 class HasStateRef st env | env -> st where
   stateRefL :: Lens' env (SomeRef st)
 
+instance HasStateRef a (SomeRef a) where
+  stateRefL = id
+
 getStateRef :: (HasStateRef st env, MonadReader env m, MonadIO m) => m st
 getStateRef = do
   ref <- view stateRefL
