@@ -9,7 +9,7 @@ module Heart.Core.Aeson
   , HasTagPrefix (..)
   ) where
 
-import Control.Newtype.Generics (Newtype, O, pack, unpack)
+import Control.Newtype.Generics (O, pack, unpack)
 import Data.Aeson
 import Data.Aeson.Casing (aesonPrefix, snakeCase)
 import qualified Data.Text as Text

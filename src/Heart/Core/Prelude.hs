@@ -14,6 +14,7 @@ module Heart.Core.Prelude
   , Identity (..)
   , Int64
   , Iso'
+  , IsList
   , IsString
   , Lens'
   , ListT (..)
@@ -23,10 +24,12 @@ module Heart.Core.Prelude
   , MonadIO (..)
   , MonadMask (..)
   , MonadReader (..)
+  , MonadState (..)
   , MonadThrow (..)
   , MonadTrans (..)
   , MonadUnliftIO (..)
   , Newtype
+  , NFData
   , Prism'
   , Proxy (..)
   , Rep
@@ -53,19 +56,23 @@ module Heart.Core.Prelude
   , iso
   , makeLenses
   , makePrisms
+  , modifying
   , over
   , review
   , set
   , simple
   , toList
   , unless
+  , use
   , view
   , when
   ) where
 
 import Control.Applicative (Alternative (..))
+import Control.DeepSeq (NFData)
 import Control.Exception (Exception (..), SomeException)
-import Control.Lens (Getter, Iso', Lens', Prism', Setter', coerced, iso, over, review, set, simple, view)
+import Control.Lens (Getter, Iso', Lens', Prism', Setter', coerced, iso, modifying, over, review, set, simple, use,
+                     view)
 import Control.Lens.TH (makeLenses, makePrisms)
 import Control.Monad (ap, foldM, unless, when)
 import Control.Monad.Catch (MonadCatch (..), MonadMask (..), MonadThrow (..), catchJust)
@@ -74,6 +81,7 @@ import Control.Monad.Identity (Identity (..))
 import Control.Monad.IO.Class (MonadIO (..))
 import Control.Monad.IO.Unlift (MonadUnliftIO (..), UnliftIO (..))
 import Control.Monad.Reader (MonadReader (..))
+import Control.Monad.State (MonadState (..))
 import Control.Monad.Trans (MonadTrans (..))
 import Control.Newtype.Generics (Newtype)
 import Data.Aeson (FromJSON (..), FromJSONKey, ToJSON (..), ToJSONKey)
@@ -93,6 +101,7 @@ import Data.Text (Text)
 import Data.Traversable (for)
 import Data.Typeable (Typeable, cast)
 import Data.Void (Void)
+import GHC.Exts (IsList)
 import GHC.Generics (Generic, Rep)
 import GHC.Stack (HasCallStack)
 import ListT (ListT (..))

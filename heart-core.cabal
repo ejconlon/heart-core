@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 507050e1190f946f7bd7befa6b9d911d927f5f1737a960c724047c1a6956bbe1
+-- hash: effa1e2d3414d60241a02d0d77c5989b8a5a55d81b56c5ac194f1b2da2e79572
 
 name:           heart-core
-version:        0.1.1
+version:        0.2.0
 synopsis:       An opinionated library prelude in the UnliftIO style
 description:    Please see the README on GitHub at <https://github.com/ejconlon/heart-core#readme>
 category:       Prelude
@@ -49,6 +49,7 @@ library
     , aeson-casing >=0.2
     , base >=4.12 && <5
     , containers >=0.6
+    , deepseq >=1.4
     , exceptions >=0.10
     , filepath >=1.4
     , hashable >=1.2
