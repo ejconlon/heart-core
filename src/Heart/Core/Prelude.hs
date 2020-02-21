@@ -28,6 +28,7 @@ module Heart.Core.Prelude
   , MonadThrow (..)
   , MonadTrans (..)
   , MonadUnliftIO (..)
+  , MonadWriter (..)
   , Newtype
   , NFData
   , Prism'
@@ -83,6 +84,7 @@ import Control.Monad.IO.Unlift (MonadUnliftIO (..), UnliftIO (..))
 import Control.Monad.Reader (MonadReader (..))
 import Control.Monad.State (MonadState (..))
 import Control.Monad.Trans (MonadTrans (..))
+import Control.Monad.Writer (MonadWriter (..))
 import Control.Newtype.Generics (Newtype)
 import Data.Aeson (FromJSON (..), FromJSONKey, ToJSON (..), ToJSONKey)
 import Data.Coerce (Coercible, coerce)

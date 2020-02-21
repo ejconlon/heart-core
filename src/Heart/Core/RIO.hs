@@ -8,17 +8,21 @@ See LICENSE info in the README.
 -}
 module Heart.Core.RIO
   ( HasStateRef (..)
+  , HasWriteRef (..)
   , SomeRef
   , RIO (..)
   , getStateRef
   , liftRIO
+  , listenWriteRef
   , newSomeRef
   , mapRIO
   , modifySomeRef
   , modifyStateRef
+  , passWriteRef
   , putStateRef
   , runRIO
   , readSomeRef
+  , tellWriteRef
   , writeSomeRef
   ) where
 
@@ -88,3 +92,37 @@ modifyStateRef f = do
 instance HasStateRef st env => MonadState st (RIO env) where
   get = getStateRef
   put = putStateRef
+
+class HasWriteRef w env | env -> w where
+  writeRefL :: Lens' env (SomeRef w)
+
+instance HasWriteRef a (SomeRef a) where
+  writeRefL = id
+
+tellWriteRef :: (HasWriteRef w env, MonadReader env m, MonadIO m, Semigroup w) => w -> m ()
+tellWriteRef value = do
+  ref <- view writeRefL
+  liftIO $ modifySomeRef ref (<> value)
+
+listenWriteRef :: (HasWriteRef w env, MonadReader env m, MonadIO m) => m a -> m (a, w)
+listenWriteRef action = do
+  w1 <- view writeRefL >>= liftIO . readSomeRef
+  a <- action
+  w2 <- do
+    refEnv <- view writeRefL
+    v <- liftIO $ readSomeRef refEnv
+    _ <- liftIO $ writeSomeRef refEnv w1
+    return v
+  return (a, w2)
+
+passWriteRef :: (HasWriteRef w env, MonadReader env m, MonadIO m) => m (a, w -> w) -> m a
+passWriteRef action = do
+  (a, transF) <- action
+  ref <- view writeRefL
+  liftIO $ modifySomeRef ref transF
+  return a
+
+instance (Monoid w, HasWriteRef w env) => MonadWriter w (RIO env) where
+  tell = tellWriteRef
+  listen = listenWriteRef
+  pass = passWriteRef
